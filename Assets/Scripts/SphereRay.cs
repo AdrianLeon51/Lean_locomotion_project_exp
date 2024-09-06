@@ -36,8 +36,18 @@ public class SphereRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + transform.forward * rayDistance);
+        if (gameObject.name == "CenterEyeAnchor")
+        {
+            lineRenderer.SetPosition(0, transform.position - new Vector3(0f, 0.5f, 0f));
+            lineRenderer.SetPosition(1, transform.position - new Vector3(0f, 0.5f, 0f) + transform.forward * rayDistance);
+            Debug.Log("It's into CenterEyeAnchor");
+        }
+        else
+        {
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, transform.position + transform.forward * rayDistance);
+        }
+        
 
         //Delete from hereon to go back to the latest update
         // Perform raycast to detect object interaction
@@ -46,6 +56,7 @@ public class SphereRay : MonoBehaviour
         if (Physics.Raycast(transform.position, (transform.forward * rayDistance).normalized, out hit, rayDistance))
         {
             pointedObject = hit.collider.gameObject;
+            Data_Exp3.pointedObjectName = pointedObject.name;
             // If the ray hits an object
             Debug.Log("Hit object: " + pointedObject.name);
 
@@ -86,7 +97,7 @@ public class SphereRay : MonoBehaviour
 
             if (pointedObject.name == "TargetObject")
             {
-                GazeColorChange(targetObject);
+                //GazeColorChange(targetObject);
                 if (tasks.runningTask)
                 {
                     // Start dwelling
@@ -124,10 +135,10 @@ public class SphereRay : MonoBehaviour
                 EntriesCounter();
             }
 
-            if (pointedObject.name != "TargetObject")
-            {
-                GazeColorOrig(targetObject);
-            }
+            //if (pointedObject.name != "TargetObject")
+            //{
+            //    GazeColorOrig(targetObject);
+            //}
         }
     }
 

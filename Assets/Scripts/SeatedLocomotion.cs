@@ -48,8 +48,10 @@ public class SeatedLocomotion : MonoBehaviour
     private void Start()
     {
         originalPosition = targetObject.transform.localPosition;
+        Data_Exp3.originalPosition = originalPosition;
         originalPositionNorm = originalPosition.normalized;
-        originalRotation = targetObject.rotation;
+        originalRotation = targetObject.localRotation;
+        Data_Exp3.originalRotation = originalRotation;
 
 
         // fetch components on the same gameObject

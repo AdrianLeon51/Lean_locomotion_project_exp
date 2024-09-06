@@ -5,14 +5,35 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/Exp_1.unity
-    guid: 3a95771de4f5f124eba427c6da02201c
   - enabled: 1
-    path: Assets/Scenes/Exp_3.unity
+    path: Assets/Scenes/Exp 3 Scenes/Intro Scene.unity
+    guid: 64fb6d5bf6006b6448ab7064ca4b9479
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Head_NoD_Tutorial.unity
+    guid: 38ee941388d7935468c0084a6ee27816
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Head_NoD.unity
+    guid: 23073bcb7c1407e40b461a6cbc0b82a8
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Questionnaires.unity
+    guid: 9cbe28d30811a96468b430645629c855
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Head_D_Tutorial.unity
+    guid: ff86b2394794bed489b9921e810be8f6
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Head_D.unity
+    guid: d1cc56fff59c10d41a4f0c72b087164e
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Eye_NoD_Tutorial.unity
+    guid: f58f21f39fe18984688c9cf000a64c02
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Eye_NoD.unity
+    guid: 1dc87027ccc6db54da80637105a4603f
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Eye_D_Tutorial.unity
+    guid: 4f80d2ef0e6ed5d41a7bfad5948cf3cc
+  - enabled: 1
+    path: Assets/Scenes/Exp 3 Scenes/Eye_D.unity
     guid: 035390d121c5f4446b06585af4bc801d
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bd1de61f4f3c4b749b8b5e92622b2056, type: 2}
