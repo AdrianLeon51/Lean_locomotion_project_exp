@@ -46,11 +46,13 @@ public class WriteDataPerScene : MonoBehaviour
         string sceneName = Data_Exp3.sceneName;
         int currentNTry = Data_Exp3.numberNTryList[i] -1;
         string obstacleName = Data_Exp3.currentObsNameList[i];
+        string sizeNTry = Data_Exp3.currentObsSizeList[i];
         float timeStart = Data_Exp3.timeNTryStartList[i];
         float timeEnd = Data_Exp3.timeNTryEndList[i];
         float distScene = Data_Exp3.distanceNTryList[i];
         int numCollissionsNTry = Data_Exp3.numberNTryCollissionsList[i];
         int numReentryGazeNTry = Data_Exp3.numberNTryReentryGazeList[i];
+        int numReentryThresholdGazeNTry = Data_Exp3.numberNTryReentryThresholdGazeList[i];
         float timeWP1L = Data_Exp3.distanceWaypoint1LList[i].Item1;
         float distWP1L = Data_Exp3.distanceWaypoint1LList[i].Item2;
         float timeWP2L = Data_Exp3.distanceWaypoint2LList[i].Item1;
@@ -63,8 +65,8 @@ public class WriteDataPerScene : MonoBehaviour
         float distWP2R = Data_Exp3.distanceWaypoint2RList[i].Item2;
         float timeWP3R = Data_Exp3.distanceWaypoint3RList[i].Item1;
         float distWP3R = Data_Exp3.distanceWaypoint3RList[i].Item2;
-        WriteDataNTry(tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, obstacleName, timeStart, timeEnd
-        , distScene, numCollissionsNTry, numReentryGazeNTry, timeWP1L, distWP1L, timeWP2L, distWP2L, timeWP3L, distWP3L, timeWP1R, distWP1R, timeWP2R, distWP2R, timeWP3R, distWP3R);
+        WriteDataNTry(tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, obstacleName, sizeNTry, timeStart, timeEnd
+        , distScene, numCollissionsNTry, numReentryGazeNTry, numReentryThresholdGazeNTry, timeWP1L, distWP1L, timeWP2L, distWP2L, timeWP3L, distWP3L, timeWP1R, distWP1R, timeWP2R, distWP2R, timeWP3R, distWP3R);
 
 
 
@@ -78,6 +80,8 @@ public class WriteDataPerScene : MonoBehaviour
         int ordScene = Data_Exp3.numberVariableOrder;
         string sceneName = Data_Exp3.sceneName;
         int currentNTry = Data_Exp3.rawPositionVector[i].Item1;
+        string currentObsName = Data_Exp3.rawPositionVector[i].Item4;
+        string currentObsSize = Data_Exp3.rawPositionVector[i].Item5;
         float timePosition = Data_Exp3.rawPositionVector[i].Item2;
         float positionX = Data_Exp3.rawPositionVector[i].Item3.x;
         float positionY = Data_Exp3.rawPositionVector[i].Item3.y;
@@ -95,8 +99,8 @@ public class WriteDataPerScene : MonoBehaviour
         float gazeRotY = Data_Exp3.rawGazeHeadRotVector[i].Item3.eulerAngles.y;
         float gazeRotZ = Data_Exp3.rawGazeHeadRotVector[i].Item3.eulerAngles.z;
         //List<(float, Vector3)> playerPositions = new List<(float, Vector3)> { Data_Exp3.rawPositionVector };
-        Debug.Log("Data Direction: " + tStamp + pNumber + ordScene + sceneName + currentNTry + timePosition + positionX + positionY + positionZ);
-        WriteDataDirections(tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, timePosition, positionX, positionY, positionZ, transX, transY, transZ, headForwX, headForwY, headForwZ, gazeForwX, gazeForwY, gazeForwZ, gazeRotX, gazeRotY, gazeRotZ);
+        Debug.Log("Data Direction: " + tStamp + pNumber + ordScene + sceneName + currentNTry + currentObsName + currentObsSize + timePosition + positionX + positionY + positionZ);
+        WriteDataDirections(tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, currentObsName, currentObsSize, timePosition, positionX, positionY, positionZ, transX, transY, transZ, headForwX, headForwY, headForwZ, gazeForwX, gazeForwY, gazeForwZ, gazeRotX, gazeRotY, gazeRotZ);
     }
 
     public void DataQuestionnaire()
@@ -138,7 +142,10 @@ public class WriteDataPerScene : MonoBehaviour
         float Q30 = Data_Exp3.question30;
         float Q31 = Data_Exp3.question31;
         float Q32 = Data_Exp3.question32;
-        WriteDataQuestionnaire(tStamp, pNumber, lsNumber, ordScene, sceneName, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21, Q22, Q23, Q24, Q25, Q26, Q27, Q28, Q29, Q30, Q31, Q32);
+        float Q33 = Data_Exp3.question33;
+        float Q34 = Data_Exp3.question34;
+        float Q35 = Data_Exp3.question35;
+        WriteDataQuestionnaire(tStamp, pNumber, lsNumber, ordScene, sceneName, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21, Q22, Q23, Q24, Q25, Q26, Q27, Q28, Q29, Q30, Q31, Q32, Q33, Q34, Q35);
 
     }
 
@@ -150,6 +157,9 @@ public class WriteDataPerScene : MonoBehaviour
         int ordScene = Data_Exp3.numberVariableOrder;
         string sceneName = Data_Exp3.sceneName;
         int currentNTry = Data_Exp3.rawPositionVector[i].Item1;
+        string currentObsName = Data_Exp3.rawPositionVector[i].Item4;
+        string currentObsSize = Data_Exp3.rawPositionVector[i].Item5;
+        //string sizeNTry = Data_Exp3.;
         float timePosition = Data_Exp3.rawPositionVector[i].Item2;
         float localPosX = Data_Exp3.rawLocalHeadPosList[i].Item3.x;
         float localPosY = Data_Exp3.rawLocalHeadPosList[i].Item3.y;
@@ -164,7 +174,8 @@ public class WriteDataPerScene : MonoBehaviour
         float localBodyRotX = Data_Exp3.rawLocalBodyRotList[i].Item3.eulerAngles.x;
         float localBodyRotY = Data_Exp3.rawLocalBodyRotList[i].Item3.eulerAngles.y;
         float localBodyRotZ = Data_Exp3.rawLocalBodyRotList[i].Item3.eulerAngles.z;
-        WriteDataHeadset(tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, timePosition, localPosX, localPosY, localPosZ, localRotX, localRotY, localRotZ, gazeObjName, localBodyPosX, localBodyPosY, localBodyPosZ, localBodyRotX, localBodyRotY, localBodyRotZ);
+        
+        WriteDataHeadset(tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, currentObsName, currentObsSize, timePosition, localPosX, localPosY, localPosZ, localRotX, localRotY, localRotZ, gazeObjName, localBodyPosX, localBodyPosY, localBodyPosZ, localBodyRotX, localBodyRotY, localBodyRotZ);
     }
 
     private void WriteDataScene( string tStamp, int pNumber, string lsNumber, int ordScene, int totalNTry, string sceneName, float timeStart, float timeScene,
@@ -213,13 +224,13 @@ public class WriteDataPerScene : MonoBehaviour
         Debug.Log($"Tuple data has been written to: {filePath}");
     }
 
-    private void WriteDataNTry(string tStamp, int pNumber, string lsNumber, int ordScene, string sceneName, int currentNTry, string obstacleName, float timeStart, float timeEnd
-        , float distScene, int numCollissionsNTry, int numReentryGazeNTry, float timeWP1L, float distWP1L, float timeWP2L, float distWP2L, float timeWP3L, float distWP3L, float timeWP1R, float distWP1R, float timeWP2R, float distWP2R, float timeWP3R, float distWP3R)
+    private void WriteDataNTry(string tStamp, int pNumber, string lsNumber, int ordScene, string sceneName, int currentNTry, string obstacleName, string obstacleSize, float timeStart, float timeEnd
+        , float distScene, int numCollissionsNTry, int numReentryGazeNTry, int numReentryThresholdGazeNTry, float timeWP1L, float distWP1L, float timeWP2L, float distWP2L, float timeWP3L, float distWP3L, float timeWP1R, float distWP1R, float timeWP2R, float distWP2R, float timeWP3R, float distWP3R)
     {
-        //Date, P Number, Order Scene, Scene Name, #NTry, obstacleName, TimeStartNTry, TimeEndNTry, DistanceNTry, #CollissionsNTry, #ReentryGazeNTry, TimeWP1, DistWP1, TimeWP2, DistWP2, TimeWP3, DistWP3, TimeWP1R, DistWP1R, TimeWP2R, DistWP2R, TimeWP3R, DistWP3R
-        List<(string, int, string, int, string, int, string, float, float, float, int, int, float, float, float, float, float, float, float, float, float, float, float, float)> listToWrite = new List<(string, int, string, int, string, int, string, float, float, float, int, int, float, float, float, float, float, float, float, float, float, float, float, float)>
+        //Date, P Number, Order Scene, Scene Name, #NTry, obstacleName, obstacleSize, TimeStartNTry, TimeEndNTry, DistanceNTry, #CollissionsNTry, #ReentryGazeNTry, #ReentryThresholdGazeNTry, TimeWP1, DistWP1, TimeWP2, DistWP2, TimeWP3, DistWP3, TimeWP1R, DistWP1R, TimeWP2R, DistWP2R, TimeWP3R, DistWP3R
+        List<(string, int, string, int, string, int, string, string, float, float, float, int, int, int, float, float, float, float, float, float, float, float, float, float, float, float)> listToWrite = new List<(string, int, string, int, string, int, string, string, float, float, float, int, int, int, float, float, float, float, float, float, float, float, float, float, float, float)>
         {
-            (tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, obstacleName, timeStart, timeEnd, distScene, numCollissionsNTry, numReentryGazeNTry, timeWP1L, distWP1L, timeWP2L, distWP2L, timeWP3L, distWP3L, timeWP1R, distWP1R, timeWP2R, distWP2R, timeWP3R, distWP3R)
+            (tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, obstacleName, obstacleSize, timeStart, timeEnd, distScene, numCollissionsNTry, numReentryGazeNTry, numReentryThresholdGazeNTry, timeWP1L, distWP1L, timeWP2L, distWP2L, timeWP3L, distWP3L, timeWP1R, distWP1R, timeWP2R, distWP2R, timeWP3R, distWP3R)
         };
 
         string fileName = "DataNTry_" + pNumber;
@@ -248,7 +259,7 @@ public class WriteDataPerScene : MonoBehaviour
                 // Write headers if provided and the file is new
                 if (!File.Exists(filePath))
                 {
-                    string headers = "Date, P Number, Order Scene, Scene Name, #NTry, obstacleName, TimeStartNTry, TimeEndNTry, DistanceNTry, #CollissionsNTry, #ReentryGazeNTry, TimeWP1, DistWP1, TimeWP2, DistWP2, TimeWP3, DistWP3, TimeWP1R, DistWP1R, TimeWP2R, DistWP2R, TimeWP3R, DistWP3R";
+                    string headers = "Date, P Number, Order Scene, Scene Name, #NTry, obstacleName, obstacleSize, TimeStartNTry, TimeEndNTry, DistanceNTry, #CollissionsNTry, #ReentryGazeNTry, TimeWP1, DistWP1, TimeWP2, DistWP2, TimeWP3, DistWP3, TimeWP1R, DistWP1R, TimeWP2R, DistWP2R, TimeWP3R, DistWP3R";
                     writer.WriteLine(headers);
                 }
                 // Write each tuple as a line in the CSV file
@@ -259,14 +270,14 @@ public class WriteDataPerScene : MonoBehaviour
         Debug.Log($"Tuple data has been written to: {filePath}");
     }
 
-    void WriteDataDirections(string tStamp, int pNumber, string lsNumber, int ordScene, string sceneName, int currentNTry, float timePosition, float positionX, float positionY, float positionZ, 
+    void WriteDataDirections(string tStamp, int pNumber, string lsNumber, int ordScene, string sceneName, int currentNTry, string currentObsName, string currentObsSize, float timePosition, float positionX, float positionY, float positionZ, 
         float transX, float transY, float transZ, float headForwX, float headForwY, float headForwZ, float gazeForwX, float gazeForwY, float gazeForwZ, float gazeRotX, float gazeRotY, float gazeRotZ)
     {
 
         //Date, P Number, Order Scene, Scene Name, TimePosition, PositionX, PositionY, PositionZ
-        List<(string, int, string, int, string, int, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)> listToWrite = new List<(string, int, string, int, string, int, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)>
+        List<(string, int, string, int, string, int, string, string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)> listToWrite = new List<(string, int, string, int, string, int, string, string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)>
         {
-            (tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, timePosition, positionX, positionY, positionZ, transX, transY, transZ, headForwX, headForwY, headForwZ, gazeForwX, gazeForwY, gazeForwZ, gazeRotX, gazeRotY, gazeRotZ)
+            (tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, currentObsName, currentObsSize, timePosition, positionX, positionY, positionZ, transX, transY, transZ, headForwX, headForwY, headForwZ, gazeForwX, gazeForwY, gazeForwZ, gazeRotX, gazeRotY, gazeRotZ)
         };
 
         string fileName = "PlayerPosition_" + Data_Exp3.participantNumber;
@@ -305,14 +316,16 @@ public class WriteDataPerScene : MonoBehaviour
         Debug.Log($"Player positions have been written to: {filePath}");
     }
 
-    void WriteDataHeadset(string tStamp, int pNumber, string lsNumber, int ordScene, string sceneName, int currentNTry, float timePosition, float localPosX, float localPosY, float localPosZ,
+    void WriteDataHeadset(string tStamp, int pNumber, string lsNumber, int ordScene, string sceneName, int currentNTry, string currentObsName, string currentObsSize, float timePosition, float localPosX, float localPosY, float localPosZ,
         float localRotX, float localRotY, float localRotZ, string gazeObjName, float bodyDirX, float bodyDirY, float bodyDirZ, float bodyRotX, float bodyRotY, float bodyRotZ)
     {
 
-        //Date, P Number, Order Scene, Scene Name, NumNTry, TimePosition, LocalHeadPosX, LocalHeadPosY, LocalHeadPosZ, LocalHeadRotX, LocalHeadRotY, LocalHeadRotZ, GazeObjName, BodyDirX, BodyDirY, BodyDirZ, BodyRotX, BodyRotY, BodyRotZ
-        List<(string, int, string, int, string, int, float, float, float, float, float, float, float, string, float, float, float, float, float, float)> listToWrite = new List<(string, int, string, int, string, int, float, float, float, float, float, float, float, string, float, float, float, float, float, float)>
+        //Date, P Number, Order Scene, Scene Name, NumNTry, sizeNTry, TimePosition, LocalHeadPosX, LocalHeadPosY, LocalHeadPosZ, LocalHeadRotX, LocalHeadRotY, LocalHeadRotZ, GazeObjName, BodyDirX, BodyDirY, BodyDirZ, BodyRotX, BodyRotY, BodyRotZ
+        List<(string, int, string, int, string, int, string, string, float, float, float, float, float, float, float, string, float, float, float, float, float, float)>
+            listToWrite = new List<(string, int, string, int, string, int, string, string, float, float, float, float, float, float, float, string, float, float, float, float, float, float)>
         {
-            (tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, timePosition, localPosX, localPosY, localPosZ, localRotX, localRotY, localRotZ, gazeObjName, bodyDirX, bodyDirY, bodyDirZ, bodyRotX, bodyRotY, bodyRotZ)
+            //(string, int, string, int, string, int, string, string, float, float, float, float, float, float, float, float, string, float, float, float, float, float, float);
+            (tStamp, pNumber, lsNumber, ordScene, sceneName, currentNTry, currentObsName, currentObsSize, timePosition, localPosX, localPosY, localPosZ, localRotX, localRotY, localRotZ, gazeObjName, bodyDirX, bodyDirY, bodyDirZ, bodyRotX, bodyRotY, bodyRotZ)
         };
 
         string fileName = "HeadsetData_" + Data_Exp3.participantNumber;
@@ -353,14 +366,14 @@ public class WriteDataPerScene : MonoBehaviour
 
     void WriteDataQuestionnaire(string tStamp, int pNumber, string lsNumber, int ordScene, string sceneName, float Q1, float Q2, float Q3, float Q4, float Q5, float Q6, float Q7, float Q8, float Q9, float Q10, 
         float Q11, float Q12, float Q13, float Q14, float Q15, float Q16, float Q17, float Q18, float Q19, float Q20, 
-        float Q21, float Q22, float Q23, float Q24, float Q25, float Q26, float Q27, float Q28, float Q29, float Q30, float Q31, float Q32)
+        float Q21, float Q22, float Q23, float Q24, float Q25, float Q26, float Q27, float Q28, float Q29, float Q30, float Q31, float Q32, float Q33, float Q34, float Q35)
     {
 
         //Date, P Number, LS#, Order Scene, Scene Name, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21, Q22, Q23, Q24, Q25, Q26, Q27, Q28, Q29, Q30, Q31, Q32
-        List<(string, int, string, int, string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)> 
-            listToWrite = new List<(string, int, string, int, string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)>
+        List<(string, int, string, int, string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)> 
+            listToWrite = new List<(string, int, string, int, string, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float, float)>
         {
-            (tStamp, pNumber, lsNumber, ordScene, sceneName, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21, Q22, Q23, Q24, Q25, Q26, Q27, Q28, Q29, Q30, Q31, Q32)
+            (tStamp, pNumber, lsNumber, ordScene, sceneName, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16, Q17, Q18, Q19, Q20, Q21, Q22, Q23, Q24, Q25, Q26, Q27, Q28, Q29, Q30, Q31, Q32, Q33, Q34, Q35)
         };
 
         string fileName = "QuestionnaireData_" + Data_Exp3.participantNumber;

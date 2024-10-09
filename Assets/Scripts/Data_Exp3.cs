@@ -50,19 +50,25 @@ public static class Data_Exp3
     public static List<float> numberSceneCollissionsList = new List<float> { };
     public static List<int> numberNTryCollissionsList = new List<int> { };
     public static List<string> currentObsNameList = new List<string> { };
+    public static List<string> currentObsSizeList = new List<string> { };
     //Collissions detected in full scene
     public static int numberSceneCollissions;
     //Collissions detected after each move is allowed
     public static int numberNTryCollissions;
     //Name of current obstacle
     public static string currentObsName;
+    //Size of current obstacle
+    public static string currentObsSize;
 
     public static List<float> numberSceneReentryGazeList = new List<float> { };
     public static List<int> numberNTryReentryGazeList = new List<int> { };
+    public static List<int> numberNTryReentryThresholdGazeList = new List<int> { };
     //Reentries detected in full scene
     public static int numberSceneReentryGaze;
-    //Reentries detected after each move is allowed
+    //Reentries detected after each move is allowed - Equivalent to Dwell time
     public static int numberNTryReentryGaze;
+    //Reentries detected after defined threshold
+    public static int numberNTryReentryThresholdGaze;
 
     public static List<(float,float)> distanceWaypoint1LList = new List<(float,float)> { };
     public static List<(float,float)> distanceWaypoint2LList = new List<(float,float)> { };
@@ -92,7 +98,7 @@ public static class Data_Exp3
 
     //Vectors missing
     public static List<(float, Vector3, Vector3, Vector3,Vector3,Quaternion)> rawDirectionVectors = new List<(float, Vector3, Vector3, Vector3,Vector3,Quaternion)> { };
-    public static List<(int, float, Vector3)> rawPositionVector = new List<(int, float, Vector3)> { };
+    public static List<(int, float, Vector3, string, string)> rawPositionVector = new List<(int, float, Vector3, string, string)> { };
     public static List<(int, float, Vector3)> rawTranslationVector = new List<(int, float, Vector3)> { };
     public static List<(int, float, Vector3)> rawHeadDirVector = new List<(int, float, Vector3)> { };
     public static List<(int, float, Vector3)> rawGazeHeadDirVector = new List<(int, float, Vector3)> { };
@@ -173,6 +179,9 @@ public static class Data_Exp3
     public static float question30;
     public static float question31;
     public static float question32;
+    public static float question33;
+    public static float question34;
+    public static float question35;
 
     //Target Object 
     public static int entriesCounter;

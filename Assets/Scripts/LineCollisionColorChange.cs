@@ -8,6 +8,13 @@ public class LineCollisionColorChange : MonoBehaviour
     public float collisionDistanceThreshold = 0.1f; // Adjust this based on the line width and sphere size
     private Renderer sphereRenderer;
 
+    // Number of times the gaze reenters the object
+    private int gazeReentryThresholdCount = 0;
+    // The time when the last gaze reentry occurred
+    private float lastReentryTime = 0f;
+    // The minimum time gap between valid reentries (in seconds)
+    private float reentryThreshold = 0.5f;
+
     void Start()
     {
         // Get the Renderer component from the sphere
@@ -24,6 +31,15 @@ public class LineCollisionColorChange : MonoBehaviour
             Debug.Log("Color is being changed");
             Data_Exp3.numberNTryReentryGaze++;
             Data_Exp3.numberSceneReentryGaze++;
+            // Check if the reentry is 0.5 seconds apart from the last one
+            if (Time.time - lastReentryTime >= reentryThreshold)
+            {
+                Data_Exp3.numberNTryReentryThresholdGaze++;
+                gazeReentryThresholdCount++;
+                Debug.Log("Gaze reentered the object. Reentry count: " + gazeReentryThresholdCount);                
+            }
+            // Update the last reentry time
+            lastReentryTime = Time.time;
         }
         else
         {

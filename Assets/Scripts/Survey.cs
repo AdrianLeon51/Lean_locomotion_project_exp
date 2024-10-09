@@ -39,6 +39,9 @@ public class Survey : MonoBehaviour
         Data_Exp3.question30 = CheckToggles(qRepliesList[29]);
         Data_Exp3.question31 = CheckToggles(qRepliesList[30]);
         Data_Exp3.question32 = CheckToggles(qRepliesList[31]);
+        Data_Exp3.question33 = CheckToggles(qRepliesList[32]);
+        Data_Exp3.question34 = CheckToggles(qRepliesList[33]);
+        Data_Exp3.question35 = CheckToggles(qRepliesList[34]);
 
     }
     // Function to check toggles and assign the value

@@ -262,12 +262,12 @@ public class Tasks_Exp_3 : MonoBehaviour
         
     }
 
-        private void TrackPlayerPosition()
+    private void TrackPlayerPosition()
     {
         Debug.Log("Track Player Position is called");
         // Record the current position of the player
         float timeFrame = Time.time;
-        Data_Exp3.rawPositionVector.Add((Data_Exp3.numberNTry, timeFrame, ovrCamerarig.transform.position));
+        Data_Exp3.rawPositionVector.Add((Data_Exp3.numberNTry, timeFrame, ovrCamerarig.transform.position, Data_Exp3.currentObsName, Data_Exp3.currentObsSize));
         Data_Exp3.rawTranslationVector.Add((Data_Exp3.numberNTry, timeFrame, centerAnchorObject.transform.localPosition));
         Data_Exp3.rawHeadDirVector.Add((Data_Exp3.numberNTry, timeFrame, centerAnchorObject.transform.forward));
         Data_Exp3.rawGazeHeadDirVector.Add((Data_Exp3.numberNTry, timeFrame, leftEyeAnchorObject.transform.forward));
@@ -335,14 +335,51 @@ public class Tasks_Exp_3 : MonoBehaviour
         if (obstacleCenterObject.activeInHierarchy)
         {
             Data_Exp3.currentObsName = obstacleCenterObject.name;
+            if (obstacleCenterObject.transform.localScale.x == 4)
+            {
+                Data_Exp3.currentObsSize = "Small";
+            }
+            else if (obstacleCenterObject.transform.localScale.x == 8)
+            {
+                Data_Exp3.currentObsSize = "Medium";
+            }
+            else if (obstacleCenterObject.transform.localScale.x == 12)
+            {
+                Data_Exp3.currentObsSize = "Big";
+            }
+             
         }
         else if (obstacleLeftObject.activeInHierarchy)
         {
             Data_Exp3.currentObsName = obstacleLeftObject.name;
+            if (obstacleLeftObject.transform.localScale.x == 10)
+            {
+                Data_Exp3.currentObsSize = "Small";
+            }
+            else if (obstacleLeftObject.transform.localScale.x == 12)
+            {
+                Data_Exp3.currentObsSize = "Medium";
+            }
+            else if (obstacleLeftObject.transform.localScale.x == 14)
+            {
+                Data_Exp3.currentObsSize = "Big";
+            }
         }
         else if (obstacleRightObject.activeInHierarchy)
         {
             Data_Exp3.currentObsName = obstacleRightObject.name;
+            if (obstacleRightObject.transform.localScale.x == 10)
+            {
+                Data_Exp3.currentObsSize = "Small";
+            }
+            else if (obstacleRightObject.transform.localScale.x == 12)
+            {
+                Data_Exp3.currentObsSize = "Medium";
+            }
+            else if (obstacleRightObject.transform.localScale.x == 14)
+            {
+                Data_Exp3.currentObsSize = "Big";
+            }
         }
 
         obstacleCenterObject.SetActive(false);
@@ -374,6 +411,9 @@ public class Tasks_Exp_3 : MonoBehaviour
 
         Data_Exp3.numberNTryReentryGazeList.Add(Data_Exp3.numberNTryReentryGaze);
         Data_Exp3.numberNTryReentryGaze = 0;
+
+        Data_Exp3.numberNTryReentryThresholdGazeList.Add(Data_Exp3.numberNTryReentryThresholdGaze);
+        Data_Exp3.numberNTryReentryThresholdGaze = 0;
 
         Data_Exp3.distanceWaypoint1LList.Add((timeAtClosestDistanceWP1L, closestDistanceWP1L));
         Data_Exp3.distanceWaypoint2LList.Add((timeAtClosestDistanceWP2L, closestDistanceWP2L));
@@ -554,7 +594,7 @@ public class Tasks_Exp_3 : MonoBehaviour
         // Iterate over the positions list and calculate the distance between consecutive points
         for (int i = 1; i < Data_Exp3.rawPositionVector.Count; i++)
         {
-            Debug.Log("distance variables NTry: " + currentNTry + " file NTry: " + Data_Exp3.rawPositionVector[i].Item1 + " vector count: " + Data_Exp3.rawPositionVector.Count);
+            //Debug.Log("distance variables NTry: " + currentNTry + " file NTry: " + Data_Exp3.rawPositionVector[i].Item1 + " vector count: " + Data_Exp3.rawPositionVector.Count);
             if ((currentNTry -1) == Data_Exp3.rawPositionVector[i].Item1)
             {
                 if (enterCount == 0)
@@ -566,12 +606,12 @@ public class Tasks_Exp_3 : MonoBehaviour
                     totalDistance += Vector3.Distance(Data_Exp3.rawPositionVector[i - 1].Item3, Data_Exp3.rawPositionVector[i].Item3);
                 }
                 enterCount++;
-                Debug.Log("calculated distance inside: " + totalDistance);
+                //Debug.Log("calculated distance inside: " + totalDistance);
             }
             
         }
-        Debug.Log("enter count distance: " + enterCount);
-        Debug.Log("calculated distance: " + totalDistance);
+        //Debug.Log("enter count distance: " + enterCount);
+        //Debug.Log("calculated distance: " + totalDistance);
         return totalDistance;
     }
 

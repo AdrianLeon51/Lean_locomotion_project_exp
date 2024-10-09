@@ -133,6 +133,8 @@ public class SphereRay : MonoBehaviour
             if (pointedObject.name == "TargetSphere")
             {
                 EntriesCounter();
+                Debug.Log("Gaze Entries Counter");
+                
             }
 
             //if (pointedObject.name != "TargetObject")
